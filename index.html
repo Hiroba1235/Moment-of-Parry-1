@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>見切りの刻</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- タイトル画面 -->
+    <div id="titleScreen" class="screen">
+
+        <h1>見切りの刻</h1>
+
+        <p class="subtitle">
+            その一瞬を、見逃すな。
+        </p>
+
+        <button id="startGameBtn">
+            開始
+        </button>
+
+        <button id="ruleBtn">
+            ルール説明
+        </button>
+
+    </div>
+
+    <!-- ルール画面 -->
+    <div id="ruleScreen" class="screen hidden">
+
+        <h2>ルール説明</h2>
+
+        <div class="ruleBox">
+
+            「斬れ！」が表示されたら<br>
+            スペースキーを押してください。<br><br>
+
+            フライングは1回まで。<br>
+            2回目で失格です。<br><br>
+
+            六人の剣士を倒せば
+            ゲームクリアです。
+
+        </div>
+
+        <button id="backBtn">
+            戻る
+        </button>
+
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="gameScreen" class="screen hidden">
+
+        <h2 id="stageTitle">
+            第一戦
+        </h2>
+
+        <div id="enemyName">
+            町人
+        </div>
+
+        <div id="message">
+            開始を押せ
+        </div>
+
+        <button id="startBtn">
+            開始
+        </button>
+
+        <div id="result"></div>
+
+        <button id="titleBtn">
+            タイトルへ戻る
+        </button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

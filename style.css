@@ -1,0 +1,71 @@
+
+body{
+    font-family:"HG行書体",sans-serif;
+    margin:0;
+    background:#111827;
+    color:white;
+    text-align:center;
+}
+
+.screen{
+    padding-top:80px;
+}
+
+.hidden{
+    display:none;
+}
+
+h1,
+h2,
+button,
+#enemyName,
+#stageTitle{
+    font-family:"HG行書体",serif;
+}
+
+h1{
+    font-size:90px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:24px;
+    margin-bottom:50px;
+}
+
+button{
+    width:280px;
+    padding:15px;
+    margin:10px;
+    font-size:28px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#enemyName{
+    font-size:45px;
+    color:gold;
+}
+
+#message{
+    font-size:70px;
+    margin-top:50px;
+    min-height:120px;
+}
+
+#result{
+    font-size:35px;
+    margin-top:30px;
+    min-height:150px;
+}
+
+.ruleBox{
+    width:600px;
+    max-width:90%;
+    margin:auto;
+    padding:25px;
+    border:2px solid white;
+    border-radius:15px;
+    font-size:24px;
+}
