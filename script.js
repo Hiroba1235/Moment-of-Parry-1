@@ -99,7 +99,7 @@ function startRound()
     canPush = false;
 
     const waitTime =
-        Math.floor(Math.random() * 3000) + 2000;
+        Math.floor(Math.random() * 3000) + 4000;
 
     setTimeout(() => {
 
@@ -169,9 +169,7 @@ document.addEventListener("keydown", (e) => {
 
             result.innerHTML =
                 "焦りすぎたようだ…";
-
-            startBtn.style.display =
-                "inline-block";
+                
         }
     }
 
@@ -185,7 +183,7 @@ function battleResult(playerTime)
             "あなた：" + playerTime + "ms<br>" +
             enemyName.textContent + "：" +
             cpuTime + "ms<br><br>" +
-            "勝利！";
+            "勝負あり！ 次の戦いへ…";
 
         stage++;
 
@@ -197,7 +195,7 @@ function battleResult(playerTime)
                 "完全制覇！";
 
             result.innerHTML +=
-                "<br><br>称号【剣聖】";
+                "<br><br>【剣聖】の名は君のものだ！";
 
             return;
         }
@@ -221,8 +219,6 @@ function battleResult(playerTime)
         message.textContent =
             "第" + stage + "戦で敗退";
 
-        startBtn.style.display =
-            "inline-block";
     }
 }
 
