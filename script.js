@@ -21,6 +21,13 @@ let falseStartCount = 0;
 let startTime = 0;
 let cpuTime = 0;
 
+const startSound = new Audio("sounds/出撃時.mp3");
+const slashSound = new Audio("sounds/斬撃音.mp3");
+const defeatSound = new Audio("sounds/やられボイス.mp3");
+
+const slashBtn =
+    document.getElementById("slashBtn");
+
 const enemies = [
     { name: "町人", min: 400, max: 500 },
     { name: "足軽", min: 350, max: 400 },
@@ -44,6 +51,9 @@ backBtn.addEventListener("click", () => {
 
 // ゲーム開始
 startGameBtn.addEventListener("click", () => {
+
+    startSound.currentTime = 0;
+    startSound.play();
 
     stage = 1;
     gameOver = false;
@@ -130,14 +140,17 @@ document.addEventListener("keydown", (e) => {
 
     // 成功
     if(canPush)
-    {
-        const playerTime =
-            Date.now() - startTime;
+{
+    slashSound.currentTime = 0;
+    slashSound.play();
 
-        canPush = false;
+    const playerTime =
+        Date.now() - startTime;
 
-        battleResult(playerTime);
-    }
+    canPush = false;
+
+    battleResult(playerTime);
+}
 
     // フライング
     else if(waiting)
@@ -175,6 +188,24 @@ document.addEventListener("keydown", (e) => {
 
 });
 
+slashBtn.addEventListener("click", () => {
+
+    slashSound.currentTime = 0;
+    slashSound.play();
+
+    if(gameOver) return;
+
+    if(canPush)
+    {
+        const playerTime =
+            Date.now() - startTime;
+
+        canPush = false;
+
+        battleResult(playerTime);
+    }
+});
+
 function battleResult(playerTime)
 {
     if(playerTime < cpuTime)
@@ -207,19 +238,18 @@ function battleResult(playerTime)
         }, 5000);
     }
     else
-    {
-        gameOver = true;
+{
+    gameOver = true;
 
-        result.innerHTML =
-            "あなた：" + playerTime + "ms<br>" +
-            enemyName.textContent + "：" +
-            cpuTime + "ms<br><br>" +
-            "敗北…";
+    defeatSound.currentTime = 0;
+    defeatSound.play();
 
-        message.textContent =
-            "第" + stage + "戦で敗退";
-
-    }
+    result.innerHTML =
+        "あなた：" + playerTime + "ms<br>" +
+        enemyName.textContent + "：" +
+        cpuTime + "ms<br><br>" +
+        "敗北…";
+}
 }
 
 function random(min, max)

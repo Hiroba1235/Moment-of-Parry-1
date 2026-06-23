@@ -37,12 +37,13 @@
 
             「斬れ！」が表示されたら<br>
             スペースキーを押してください。<br><br>
+            スマートフォンの場合は、🗡ボタンを押してください。<br><br>
 
             フライングは1回まで。<br>
             2回目で失格です。<br><br>
 
-            六人の剣士を倒せば
-            ゲームクリアです。
+            六人の剣士を倒せば<br>
+            ゲームクリアです。<br><br>
 
         </div>
 
@@ -55,21 +56,17 @@
     <!-- ゲーム画面 -->
     <div id="gameScreen" class="screen hidden">
 
-        <h2 id="stageTitle">
-            第一戦
-        </h2>
+    <div id="gameFrame">
 
-        <div id="enemyName">
-            町人
-        </div>
+        <h2 id="stageTitle">第一戦</h2>
 
-        <div id="message">
-            開始を押せ
-        </div>
+        <div id="enemyName">町人</div>
 
-        <button id="startBtn">
-            開始
-        </button>
+        <div id="message">開始を押せ</div>
+
+        <button id="startBtn">開始</button>
+
+        <button id="slashBtn">🗡</button>
 
         <div id="result"></div>
 
@@ -78,6 +75,8 @@
         </button>
 
     </div>
+
+</div>
 
     <script src="script.js"></script>
 
