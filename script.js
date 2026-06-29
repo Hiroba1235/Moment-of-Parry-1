@@ -19,9 +19,9 @@ const titleBtn = document.getElementById("titleBtn");
 
 // ===== 音 =====
 
-const startSound = new Audio("sounds/start.mp3");
-const slashSound = new Audio("sounds/slash.mp3");
-const defeatSound = new Audio("sounds/defeat.mp3");
+const startSound = new Audio("sounds/出撃時.mp3");
+const slashSound = new Audio("sounds/斬撃音.mp3");
+const defeatSound = new Audio("sounds/やられボイス.mp3");
 
 // ===== ステージ =====
 
@@ -34,14 +34,39 @@ const enemies = [
     "剣聖"
 ];
 
-const cpuTimes = [
-    350,
-    300,
-    260,
-    220,
-    190,
-    160
-];
+function getCpuTime() {
+
+    switch(stage){
+
+        case 0:
+            return random(320,420);
+
+        case 1:
+            return random(280,360);
+
+        case 2:
+            return random(230,320);
+
+        case 3:
+            return random(180,270);
+
+        case 4:
+            return random(150,220);
+
+        case 5:
+            return random(120,180);
+
+    }
+
+}
+
+function random(min,max){
+
+    return Math.floor(
+        Math.random()*(max-min+1)+min
+    );
+
+}
 
 // ===== 変数 =====
 
@@ -79,12 +104,21 @@ backBtn.addEventListener("click", () => {
 
 titleBtn.addEventListener("click", () => {
 
+    clearTimeout(gameTimer);
+
+    // 画面切り替え
     gameScreen.classList.add("hidden");
     titleScreen.classList.remove("hidden");
 
+    // ゲームを初期化
     stage = 0;
     falseStartCount = 0;
+    canPush = false;
     gameOver = false;
+
+    // 表示を初期状態に戻す
+    stageTitle.textContent = "第一戦";
+    enemyName.textContent = enemies[0];
 
     message.textContent = "開始を押せ";
     result.innerHTML = "";
@@ -97,10 +131,11 @@ titleBtn.addEventListener("click", () => {
 
 startBtn.addEventListener("click", () => {
 
-    stage = 0;
+    startBtn.style.display =
+        "inline-block";
     falseStartCount = 0;
     gameOver = false;
-
+    
     startBtn.style.display = "none";
 
     startSound.currentTime = 0;
@@ -112,23 +147,42 @@ startBtn.addEventListener("click", () => {
 
 // ===== ステージ読み込み =====
 
-function loadStage()
-{
+function loadStage(){
+
     stageTitle.textContent =
-        "第" + (stage + 1) + "戦";
+        "第"+(stage+1)+"戦";
 
     enemyName.textContent =
         enemies[stage];
 
+    message.textContent =
+        "開始を押せ";
+
     result.innerHTML = "";
 
-    startRound();
+    startBtn.style.display =
+        "inline-block";
+
 }
+
+startBtn.addEventListener("click",()=>{
+
+    startBtn.style.display =
+        "none";
+
+    startSound.currentTime = 0;
+
+    startSound.play();
+
+    startRound();
+
+});
 
 // ===== ラウンド開始 =====
 
 function startRound()
 {
+    
     canPush = false;
 
     message.textContent = "待て！";
@@ -164,8 +218,8 @@ function attack()
         if(falseStartCount === 1)
         {
             result.innerHTML =
-                "フライング！<br><br>" +
-                "仕切り直しだ";
+                "仕切り直し！<br><br>" +
+                "この表示が消えたら再スタートです。";
 
             clearTimeout(gameTimer);
 
@@ -223,7 +277,7 @@ slashBtn.addEventListener("click", () => {
 
 function battleResult(playerTime)
 {
-    const cpuTime = cpuTimes[stage];
+    const cpuTime = getCpuTime();
 
     if(playerTime < cpuTime)
     {
